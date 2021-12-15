@@ -12,7 +12,7 @@
 
 # 確認済み動作環境
 
-- Rasberry Pi4 Model B 8GB OKdo版
+- Raspberry Pi4 Model B 8GB OKdo版
 
 - OS : Ubuntu 18.04 LTS
 
@@ -30,6 +30,6 @@
 
 - ブレッドボード ×1
 
-- Rasberry Pi4 Model B
+- Raspberry Pi4 Model B
 
 ---
