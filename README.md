@@ -28,6 +28,8 @@
 
 - 7セグメントLED ×1
 
+-ブレッドボード ×1
+
 - Rasberry Pi4 Model B
 
 ---
