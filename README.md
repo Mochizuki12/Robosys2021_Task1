@@ -10,7 +10,7 @@
 
 ---
 
-# 動作環境
+# 確認済み動作環境
 
 - Rasberry Pi4 Model B 8GB OKdo版
 
