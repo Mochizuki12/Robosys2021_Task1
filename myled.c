@@ -5,16 +5,7 @@
 #include <linux/uaccess.h>
 #include <linux/io.h>
 #include <linux/delay.h>
-
-#define a 73
-#define b 17
-#define x 20161
-#define M 10000
-
-#define a2 191
-#define b2 31
-#define x2 28657
-#define M2 10000
+#include <linux/random.h>
 
 MODULE_AUTHOR("Ryuichi Ueda and Yuya Mochizuki");
 MODULE_DESCRIPTION("driver for 7segmentLED control");
@@ -30,160 +21,167 @@ char c;
 static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
 	
-	int n, j, rand, first=0;
+	int n, j, rand;
 	if(copy_from_user(&c, buf, sizeof(char)))
 		return -EFAULT;
 
 //	printk(KERN_INFO "receive %c\n", c);
 
 
-	if(c == 's'){
-	for(j=0;j<100;j++){
-	if(first == 0){
-                rand = (a * x + b)%M;
-		first = 1;
+	if((c == '2')||(c == '3')||(c == '4')||(c == '5')||(c == '6')||(c == '7')||(c == '8')||(c == '9')){
 
-	}else if(first == 1){
-		rand = (a * rand + b)%M;
+		for(j=0;j<100;j++){
 
-	}
+			rand = get_random_int();
+
+			n = rand % ((int)c - 48) + 1;
 	
-	n = rand % 9;
-	
-	if(n == 1){
-		gpio_base[10] = 1 << 2;
-		gpio_base[10] = 1 << 3;
-		gpio_base[10] = 1 << 4;
-		gpio_base[10] = 1 << 14;
-		gpio_base[10] = 1 << 15;
-		gpio_base[10] = 1 << 17;
-		gpio_base[10] = 1 << 18;
-		gpio_base[7] = 1 << 4;
-		gpio_base[7] = 1 << 18;
-		msleep(50);
+			if(n == 1){
+			
+				gpio_base[10] = 1 << 2;
+			        gpio_base[10] = 1 << 3;
+			        gpio_base[10] = 1 << 4;
+			        gpio_base[10] = 1 << 14;
+			        gpio_base[10] = 1 << 15;
+			        gpio_base[10] = 1 << 17;
+			        gpio_base[10] = 1 << 18;
+				gpio_base[7] = 1 << 4;
+				gpio_base[7] = 1 << 18;
+				msleep(50);
 		
-	}else if(n == 2){
-		gpio_base[10] = 1 << 2;
-		gpio_base[10] = 1 << 3;
-		gpio_base[10] = 1 << 4;
-		gpio_base[10] = 1 << 14;
-		gpio_base[10] = 1 << 15;
-		gpio_base[10] = 1 << 17;
-		gpio_base[10] = 1 << 18;
-		gpio_base[7] = 1 << 2;
-		gpio_base[7] = 1 << 4;
-		gpio_base[7] = 1 << 14;
-		gpio_base[7] = 1 << 15;
-		gpio_base[7] = 1 << 17;
-		msleep(50);
+			}else if(n == 2){
 
-	}else if(n == 3){
-		gpio_base[10] = 1 << 2;
-		gpio_base[10] = 1 << 3;
-		gpio_base[10] = 1 << 4;
-		gpio_base[10] = 1 << 14;
-		gpio_base[10] = 1 << 15;
-		gpio_base[10] = 1 << 17;
-		gpio_base[10] = 1 << 18;
-		gpio_base[7] = 1 << 2;
-		gpio_base[7] = 1 << 4;
-		gpio_base[7] = 1 << 14;
-		gpio_base[7] = 1 << 17;
-		gpio_base[7] = 1 << 18;
-		msleep(50);
+			        gpio_base[10] = 1 << 2;
+			        gpio_base[10] = 1 << 3;
+			        gpio_base[10] = 1 << 4;
+			        gpio_base[10] = 1 << 14;
+			        gpio_base[10] = 1 << 15;
+			        gpio_base[10] = 1 << 17;
+			        gpio_base[10] = 1 << 18;
+				gpio_base[7] = 1 << 2;
+				gpio_base[7] = 1 << 4;
+				gpio_base[7] = 1 << 14;
+				gpio_base[7] = 1 << 15;
+				gpio_base[7] = 1 << 17;
+				msleep(50);
 
-	}else if(n == 4){
-		gpio_base[10] = 1 << 2;
-		gpio_base[10] = 1 << 3;
-		gpio_base[10] = 1 << 4;
-		gpio_base[10] = 1 << 14;
-		gpio_base[10] = 1 << 15;
-		gpio_base[10] = 1 << 17;
-		gpio_base[10] = 1 << 18;
-		gpio_base[7] = 1 << 3;
-		gpio_base[7] = 1 << 4;
-		gpio_base[7] = 1 << 14;
-		gpio_base[7] = 1 << 18;
-		msleep(50);
+			}else if(n == 3){
 
-	}else if(n == 5){
-		gpio_base[10] = 1 << 2;
-		gpio_base[10] = 1 << 3;
-		gpio_base[10] = 1 << 4;
-		gpio_base[10] = 1 << 14;
-		gpio_base[10] = 1 << 15;
-		gpio_base[10] = 1 << 17;
-		gpio_base[10] = 1 << 18;
-		gpio_base[7] = 1 << 2;
-		gpio_base[7] = 1 << 3;
-		gpio_base[7] = 1 << 14;
-		gpio_base[7] = 1 << 18;
-		gpio_base[7] = 1 << 17;
-		msleep(50);
-		
-	}else if(n == 6){
-		gpio_base[10] = 1 << 2;
-		gpio_base[10] = 1 << 3;
-		gpio_base[10] = 1 << 4;
-		gpio_base[10] = 1 << 14;
-		gpio_base[10] = 1 << 15;
-		gpio_base[10] = 1 << 17;
-		gpio_base[10] = 1 << 18;
-		gpio_base[7] = 1 << 2;
-		gpio_base[7] = 1 << 3;
-		gpio_base[7] = 1 << 14;
-		gpio_base[7] = 1 << 15;
-		gpio_base[7] = 1 << 17;
-		gpio_base[7] = 1 << 18;
-		msleep(50);
 
-	}else if(n == 7){
-		gpio_base[10] = 1 << 2;
-		gpio_base[10] = 1 << 3;
-		gpio_base[10] = 1 << 4;
-		gpio_base[10] = 1 << 14;
-		gpio_base[10] = 1 << 15;
-		gpio_base[10] = 1 << 17;
-		gpio_base[10] = 1 << 18;
-		gpio_base[7] = 1 << 2;
-		gpio_base[7] = 1 << 4;
-		gpio_base[7] = 1 << 18;
-		msleep(50);
+			        gpio_base[10] = 1 << 2;
+			        gpio_base[10] = 1 << 3;
+			        gpio_base[10] = 1 << 4;
+			        gpio_base[10] = 1 << 14;
+			        gpio_base[10] = 1 << 15;
+			        gpio_base[10] = 1 << 17;
+			        gpio_base[10] = 1 << 18;
+				gpio_base[7] = 1 << 2;
+				gpio_base[7] = 1 << 4;
+				gpio_base[7] = 1 << 14;
+				gpio_base[7] = 1 << 17;
+				gpio_base[7] = 1 << 18;
+				msleep(50);
 
-	}else if(n == 8){
-		gpio_base[10] = 1 << 2;
-		gpio_base[10] = 1 << 3;
-		gpio_base[10] = 1 << 4;
-		gpio_base[10] = 1 << 14;
-		gpio_base[10] = 1 << 15;
-		gpio_base[10] = 1 << 17;
-		gpio_base[10] = 1 << 18;
-		gpio_base[7] = 1 << 2;
-		gpio_base[7] = 1 << 3;
-		gpio_base[7] = 1 << 4;
-		gpio_base[7] = 1 << 14;
-		gpio_base[7] = 1 << 15;
-		gpio_base[7] = 1 << 17;
-		gpio_base[7] = 1 << 18;
-		msleep(50);
+			}else if(n == 4){
 
-	}else if(n == 9){
-		gpio_base[10] = 1 << 2;
-		gpio_base[10] = 1 << 3;
-		gpio_base[10] = 1 << 4;
-		gpio_base[10] = 1 << 14;
-		gpio_base[10] = 1 << 15;
-		gpio_base[10] = 1 << 17;
-		gpio_base[10] = 1 << 18;
-		gpio_base[7] = 1 << 2;
-		gpio_base[7] = 1 << 3;
-		gpio_base[7] = 1 << 4;
-		gpio_base[7] = 1 << 14;
-		gpio_base[7] = 1 << 17;
-		gpio_base[7] = 1 << 18;
-		msleep(50);
-	}
-	}
+				gpio_base[10] = 1 << 2;
+				gpio_base[10] = 1 << 3;
+				gpio_base[10] = 1 << 4;
+				gpio_base[10] = 1 << 14;
+				gpio_base[10] = 1 << 15;
+				gpio_base[10] = 1 << 17;
+				gpio_base[10] = 1 << 18;
+				gpio_base[7] = 1 << 3;
+				gpio_base[7] = 1 << 4;
+				gpio_base[7] = 1 << 14;
+				gpio_base[7] = 1 << 18;
+				msleep(50);
+
+			}else if(n == 5){
+
+				gpio_base[10] = 1 << 2;
+				gpio_base[10] = 1 << 3;
+				gpio_base[10] = 1 << 4;
+				gpio_base[10] = 1 << 14;
+				gpio_base[10] = 1 << 15;
+				gpio_base[10] = 1 << 17;
+				gpio_base[10] = 1 << 18;
+				gpio_base[7] = 1 << 2;
+				gpio_base[7] = 1 << 3;
+				gpio_base[7] = 1 << 14;
+				gpio_base[7] = 1 << 18;
+				gpio_base[7] = 1 << 17;
+				msleep(50);
+
+			}else if(n == 6){
+
+				gpio_base[10] = 1 << 2;
+				gpio_base[10] = 1 << 3;
+				gpio_base[10] = 1 << 4;
+				gpio_base[10] = 1 << 14;
+				gpio_base[10] = 1 << 15;
+				gpio_base[10] = 1 << 17;
+				gpio_base[10] = 1 << 18;
+				gpio_base[7] = 1 << 2;
+				gpio_base[7] = 1 << 3;
+				gpio_base[7] = 1 << 14;
+				gpio_base[7] = 1 << 15;
+				gpio_base[7] = 1 << 17;
+				gpio_base[7] = 1 << 18;
+				msleep(50);
+
+			}else if(n == 7){
+
+				gpio_base[10] = 1 << 2;
+				gpio_base[10] = 1 << 3;
+				gpio_base[10] = 1 << 4;
+				gpio_base[10] = 1 << 14;
+				gpio_base[10] = 1 << 15;
+				gpio_base[10] = 1 << 17;
+				gpio_base[10] = 1 << 18;
+				gpio_base[7] = 1 << 2;
+				gpio_base[7] = 1 << 4;
+				gpio_base[7] = 1 << 18;
+				msleep(50);
+
+			}else if(n == 8){
+			
+				gpio_base[10] = 1 << 2;
+				gpio_base[10] = 1 << 3;
+				gpio_base[10] = 1 << 4;
+				gpio_base[10] = 1 << 14;
+				gpio_base[10] = 1 << 15;
+				gpio_base[10] = 1 << 17;
+				gpio_base[10] = 1 << 18;
+				gpio_base[7] = 1 << 2;
+				gpio_base[7] = 1 << 3;
+				gpio_base[7] = 1 << 4;
+				gpio_base[7] = 1 << 14;
+				gpio_base[7] = 1 << 15;
+				gpio_base[7] = 1 << 17;
+				gpio_base[7] = 1 << 18;
+				msleep(50);
+
+			}else if(n == 9){
+			
+				gpio_base[10] = 1 << 2;
+				gpio_base[10] = 1 << 3;
+				gpio_base[10] = 1 << 4;
+				gpio_base[10] = 1 << 14;
+				gpio_base[10] = 1 << 15;
+				gpio_base[10] = 1 << 17;
+				gpio_base[10] = 1 << 18;
+				gpio_base[7] = 1 << 2;
+				gpio_base[7] = 1 << 3;
+				gpio_base[7] = 1 << 4;
+				gpio_base[7] = 1 << 14;
+				gpio_base[7] = 1 << 17;
+				gpio_base[7] = 1 << 18;
+				msleep(50);
+
+			}
+
+		}
         }
 
 	return 1;
