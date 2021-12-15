@@ -14,7 +14,7 @@
 
 - Raspberry Pi4 Model B 8GB OKdo版
 
-- OS : Ubuntu 18.04 LTS
+- OS : Ubuntu 20.04.3 LTS
 
 ---
 
