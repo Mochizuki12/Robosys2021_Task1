@@ -12,22 +12,22 @@
 
 # 動作環境
 
--Rasberry Pi4 Model B 8GB OKdo版
+- Rasberry Pi4 Model B 8GB OKdo版
 
--OS:Ubuntu 18.04 LTS
+- OS:Ubuntu 18.04 LTS
 
 ---
 
 # 用意する物
 
--1kΩ抵抗 ×7
+- 1kΩ抵抗 ×7
 
--ジャンパー線（オスーメス）×8
+- ジャンパー線（オスーメス）×8
 
--ジャンパー線（オスーオス）×13
+- ジャンパー線（オスーオス）×13
 
--7セグメントLED ×1
+- 7セグメントLED ×1
 
--Rasberry Pi4 Model B
+- Rasberry Pi4 Model B
 
 ---
