@@ -33,10 +33,10 @@
 
 - Raspberry Pi4 Model B × 1
 
-# 実体配線図
+# ４．実体配線図
 
 
-# ４．デバイスドライバの使用方法
+# ５．デバイスドライバの使用方法
 
 #### １．インストール
 
@@ -117,13 +117,13 @@ $ make clean
 
 ---
 
-## ５．デモ動画
+## ６．デモ動画
 上記の手順を踏み実際に動作させた動画です
 
 ---
 
-## ６．ライセンス
+## ７．ライセンス
 
-[GNU General Public License v3.0](
+[GNU General Public License v3.0](https://github.com/Mochizuki12/Robosys2021_Task1/blob/main/COPYING)
 
 
