@@ -1,7 +1,5 @@
 //SPDX-License-Identifier: GPL-3.0
-//
 //Copyright (C) 2021 Mochizuki12 and Ryuichi Ueda
-//
 
 
 #include <linux/module.h>
