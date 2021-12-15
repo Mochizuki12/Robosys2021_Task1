@@ -1,3 +1,9 @@
+//SPDX-License-Identifier: GPL-3.0
+//
+//Copyright (C) 2021 Mochizuki12 and Ryuichi Ueda
+//
+
+
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/cdev.h>
@@ -7,10 +13,10 @@
 #include <linux/delay.h>
 #include <linux/random.h>
 
-MODULE_AUTHOR("Ryuichi Ueda and Yuya Mochizuki");
+MODULE_AUTHOR("Mochizuki12 and Ryuichi Ueda");
 MODULE_DESCRIPTION("driver for 7segmentLED control");
 MODULE_LICENSE("GPL");
-MODULE_VERSION("0.0.5");
+MODULE_VERSION("0.0.1");
 
 static dev_t dev;
 static struct cdev cdv;
