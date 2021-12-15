@@ -35,6 +35,9 @@
 
 # ４．実体配線図
 
+下の図のように配線してください
+
+![7seg_ブレッドボード](https://user-images.githubusercontent.com/92071009/146274055-0b1de256-d3e3-45db-be2f-9d77683ba7c8.png)
 
 # ５．デバイスドライバの使用方法
 
