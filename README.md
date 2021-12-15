@@ -37,7 +37,7 @@
 
 下の図のように配線してください
 
-![7seg_ブレッドボード改](https://user-images.githubusercontent.com/92071009/146274934-d92cf1f8-46e1-4999-a340-04d0d2578298.png)
+![7seg_ブレッドボード](https://user-images.githubusercontent.com/92071009/146275109-d0719f07-5a0c-4839-9b98-1e867ac421b9.png)
 
 # ５．デバイスドライバの使用方法
 
