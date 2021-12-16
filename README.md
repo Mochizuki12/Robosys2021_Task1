@@ -121,14 +121,14 @@ $ make clean
 
 ---
 
-## ６．デモ動画
+# ６．デモ動画
 上記の手順を踏み実際に動作させた動画です
 
 [セグメントLEDで1～９のランダムな数字を表示するデバイスドライバ](https://youtu.be/__I8KDhq_y0)
 
 ---
 
-## ７．ライセンス
+# ７．ライセンス
 
 [GNU General Public License v3.0](https://github.com/Mochizuki12/Robosys2021_Task1/blob/main/COPYING)
 
