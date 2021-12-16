@@ -46,7 +46,7 @@
 以下のコマンドを上から順に実行してください。
 
 ```
-$ git clone git@github.com:Mochizuki12/Robosys2021_Task1.git
+$ git clone https://github.com/Mochizuki12/Robosys2021_Task1.git
 
 $ cd Robosys2021_Task1
 
