@@ -136,4 +136,4 @@ $ make clean
 
 # ８．参考サイト
 
-searchcode include/linux/random.h https://searchcode.com/file/195152439/include/linux/random.h/
+> searchcode include/linux/random.h https://searchcode.com/file/195152439/include/linux/random.h/
