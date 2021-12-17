@@ -137,5 +137,6 @@ $ make clean
 ---
 
 # ８．参考サイト
+乱数が定義されているヘッダーファイルの名前と乱数を発生させる関数の定義名を探すために、以下のサイトを参考にしました。
 
 > searchcode include/linux/random.h https://searchcode.com/file/195152439/include/linux/random.h/
