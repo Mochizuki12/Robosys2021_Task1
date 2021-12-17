@@ -1,5 +1,7 @@
 //SPDX-License-Identifier: GPL-3.0
+//
 //Copyright (C) 2021 Mochizuki12 and Ryuichi Ueda
+//
 
 
 #include <linux/module.h>
@@ -14,13 +16,27 @@
 MODULE_AUTHOR("Mochizuki12 and Ryuichi Ueda");
 MODULE_DESCRIPTION("driver for 7segmentLED control");
 MODULE_LICENSE("GPL");
-MODULE_VERSION("0.0.1");
+MODULE_VERSION("0.1.0");
 
 static dev_t dev;
 static struct cdev cdv;
 static struct class *cls = NULL;
 static volatile u32 *gpio_base = NULL;
 char c;
+
+static int all_led_off(void)
+{
+	gpio_base[10] = 1 << 2;
+	gpio_base[10] = 1 << 3;
+	gpio_base[10] = 1 << 4;
+	gpio_base[10] = 1 << 14;
+	gpio_base[10] = 1 << 15;
+	gpio_base[10] = 1 << 17;
+	gpio_base[10] = 1 << 18;
+
+	return 0;
+
+}
 
 static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
@@ -32,7 +48,7 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 //	printk(KERN_INFO "receive %c\n", c);
 
 
-	if((c == '2')||(c == '3')||(c == '4')||(c == '5')||(c == '6')||(c == '7')||(c == '8')||(c == '9')){
+	if((50 <= (int)c) && ((int) c <= 57)){
 
 		for(j=0;j<100;j++){
 
@@ -41,27 +57,15 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 			n = rand % ((int)c - 48) + 1;
 	
 			if(n == 1){
-			
-				gpio_base[10] = 1 << 2;
-			        gpio_base[10] = 1 << 3;
-			        gpio_base[10] = 1 << 4;
-			        gpio_base[10] = 1 << 14;
-			        gpio_base[10] = 1 << 15;
-			        gpio_base[10] = 1 << 17;
-			        gpio_base[10] = 1 << 18;
+				
+				all_led_off();
 				gpio_base[7] = 1 << 4;
 				gpio_base[7] = 1 << 18;
 				msleep(50);
 		
 			}else if(n == 2){
-
-			        gpio_base[10] = 1 << 2;
-			        gpio_base[10] = 1 << 3;
-			        gpio_base[10] = 1 << 4;
-			        gpio_base[10] = 1 << 14;
-			        gpio_base[10] = 1 << 15;
-			        gpio_base[10] = 1 << 17;
-			        gpio_base[10] = 1 << 18;
+				
+				all_led_off();
 				gpio_base[7] = 1 << 2;
 				gpio_base[7] = 1 << 4;
 				gpio_base[7] = 1 << 14;
@@ -71,14 +75,7 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 
 			}else if(n == 3){
 
-
-			        gpio_base[10] = 1 << 2;
-			        gpio_base[10] = 1 << 3;
-			        gpio_base[10] = 1 << 4;
-			        gpio_base[10] = 1 << 14;
-			        gpio_base[10] = 1 << 15;
-			        gpio_base[10] = 1 << 17;
-			        gpio_base[10] = 1 << 18;
+				all_led_off();
 				gpio_base[7] = 1 << 2;
 				gpio_base[7] = 1 << 4;
 				gpio_base[7] = 1 << 14;
@@ -88,13 +85,7 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 
 			}else if(n == 4){
 
-				gpio_base[10] = 1 << 2;
-				gpio_base[10] = 1 << 3;
-				gpio_base[10] = 1 << 4;
-				gpio_base[10] = 1 << 14;
-				gpio_base[10] = 1 << 15;
-				gpio_base[10] = 1 << 17;
-				gpio_base[10] = 1 << 18;
+				all_led_off();
 				gpio_base[7] = 1 << 3;
 				gpio_base[7] = 1 << 4;
 				gpio_base[7] = 1 << 14;
@@ -102,14 +93,8 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 				msleep(50);
 
 			}else if(n == 5){
-
-				gpio_base[10] = 1 << 2;
-				gpio_base[10] = 1 << 3;
-				gpio_base[10] = 1 << 4;
-				gpio_base[10] = 1 << 14;
-				gpio_base[10] = 1 << 15;
-				gpio_base[10] = 1 << 17;
-				gpio_base[10] = 1 << 18;
+				
+				all_led_off();
 				gpio_base[7] = 1 << 2;
 				gpio_base[7] = 1 << 3;
 				gpio_base[7] = 1 << 14;
@@ -119,13 +104,7 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 
 			}else if(n == 6){
 
-				gpio_base[10] = 1 << 2;
-				gpio_base[10] = 1 << 3;
-				gpio_base[10] = 1 << 4;
-				gpio_base[10] = 1 << 14;
-				gpio_base[10] = 1 << 15;
-				gpio_base[10] = 1 << 17;
-				gpio_base[10] = 1 << 18;
+				all_led_off();
 				gpio_base[7] = 1 << 2;
 				gpio_base[7] = 1 << 3;
 				gpio_base[7] = 1 << 14;
@@ -136,27 +115,15 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 
 			}else if(n == 7){
 
-				gpio_base[10] = 1 << 2;
-				gpio_base[10] = 1 << 3;
-				gpio_base[10] = 1 << 4;
-				gpio_base[10] = 1 << 14;
-				gpio_base[10] = 1 << 15;
-				gpio_base[10] = 1 << 17;
-				gpio_base[10] = 1 << 18;
+				all_led_off();
 				gpio_base[7] = 1 << 2;
 				gpio_base[7] = 1 << 4;
 				gpio_base[7] = 1 << 18;
 				msleep(50);
 
 			}else if(n == 8){
-			
-				gpio_base[10] = 1 << 2;
-				gpio_base[10] = 1 << 3;
-				gpio_base[10] = 1 << 4;
-				gpio_base[10] = 1 << 14;
-				gpio_base[10] = 1 << 15;
-				gpio_base[10] = 1 << 17;
-				gpio_base[10] = 1 << 18;
+				
+				all_led_off();
 				gpio_base[7] = 1 << 2;
 				gpio_base[7] = 1 << 3;
 				gpio_base[7] = 1 << 4;
@@ -167,14 +134,8 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 				msleep(50);
 
 			}else if(n == 9){
-			
-				gpio_base[10] = 1 << 2;
-				gpio_base[10] = 1 << 3;
-				gpio_base[10] = 1 << 4;
-				gpio_base[10] = 1 << 14;
-				gpio_base[10] = 1 << 15;
-				gpio_base[10] = 1 << 17;
-				gpio_base[10] = 1 << 18;
+				
+				all_led_off();
 				gpio_base[7] = 1 << 2;
 				gpio_base[7] = 1 << 3;
 				gpio_base[7] = 1 << 4;
