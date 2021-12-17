@@ -7,6 +7,8 @@
 
 2～9までの任意の最大値を決め、その最大値までの1～9までの値をランダムに7セグメントLEDで表示するようにしたデバイスドライバです。
 
+動作中にパラパラと数字がランダムに入れ替わりますが、演出です。
+
 2～9個の中からどれでもいいけど、何かを選ぶときに決めきれず、困ったときに役立つと思います。
 
 ---
@@ -46,7 +48,7 @@
 以下のコマンドを上から順に実行してください。
 
 ```
-$ git clone git@github.com:Mochizuki12/Robosys2021_Task1.git
+$ git clone https://github.com/Mochizuki12/Robosys2021_Task1.git
 
 $ cd Robosys2021_Task1
 
@@ -59,6 +61,7 @@ $ sudo chmod 666 /dev/myled0
 
 #### ２．実行
 
+（実行した動画は**6.デモ動画**にリンクがあります。）
 
 ##### 2.1．最大値が2でランダムな値を表示
 
@@ -120,13 +123,19 @@ $ make clean
 
 ---
 
-## ６．デモ動画
+# ６．デモ動画
 上記の手順を踏み実際に動作させた動画です
+
+[セグメントLEDで1～９のランダムな数字を表示するデバイスドライバ](https://youtu.be/__I8KDhq_y0)
 
 ---
 
-## ７．ライセンス
+# ７．ライセンス
 
 [GNU General Public License v3.0](https://github.com/Mochizuki12/Robosys2021_Task1/blob/main/COPYING)
 
+---
 
+# ８．参考サイト
+
+> searchcode include/linux/random.h https://searchcode.com/file/195152439/include/linux/random.h/
