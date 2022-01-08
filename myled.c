@@ -16,7 +16,7 @@
 MODULE_AUTHOR("Mochizuki12 and Ryuichi Ueda");
 MODULE_DESCRIPTION("driver for 7segmentLED control");
 MODULE_LICENSE("GPL");
-MODULE_VERSION("0.1.0");
+MODULE_VERSION("1.0.0");
 
 static dev_t dev;
 static struct cdev cdv;
